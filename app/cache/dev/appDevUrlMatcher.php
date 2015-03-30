@@ -127,9 +127,54 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // nfq_homepage
+        if (0 === strpos($pathinfo, '/SayYourName') && preg_match('#^/SayYourName/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'nfq_homepage')), array (  '_controller' => 'NfqBundle\\Controller\\DefaultController::indexAction',));
+        }
+
         // homepage
         if ($pathinfo === '/app/example') {
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
+        }
+
+        if (0 === strpos($pathinfo, '/login')) {
+            // hwi_oauth_service_redirect
+            if (0 === strpos($pathinfo, '/login/connect') && preg_match('#^/login/connect/(?P<service>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'hwi_oauth_service_redirect')), array (  '_controller' => 'HWI\\Bundle\\OAuthBundle\\Controller\\ConnectController::redirectToServiceAction',));
+            }
+
+            // hwi_oauth_connect
+            if (rtrim($pathinfo, '/') === '/login') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'hwi_oauth_connect');
+                }
+
+                return array (  '_controller' => 'HWI\\Bundle\\OAuthBundle\\Controller\\ConnectController::connectAction',  '_route' => 'hwi_oauth_connect',);
+            }
+
+            if (0 === strpos($pathinfo, '/login/check-')) {
+                // facebook_login
+                if ($pathinfo === '/login/check-facebook') {
+                    return array('_route' => 'facebook_login');
+                }
+
+                // google_login
+                if ($pathinfo === '/login/check-google') {
+                    return array('_route' => 'google_login');
+                }
+
+                // custom_login
+                if ($pathinfo === '/login/check-custom') {
+                    return array('_route' => 'custom_login');
+                }
+
+                // github_login
+                if ($pathinfo === '/login/check-github') {
+                    return array('_route' => 'github_login');
+                }
+
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

@@ -17,6 +17,8 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
+      <parameter key="HWIOAuthBundle">HWI\Bundle\OAuthBundle\HWIOAuthBundle</parameter>
+      <parameter key="NfqBundle">NfqBundle\NfqBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -289,6 +291,9 @@
     <parameter key="security.authentication.session_strategy.strategy">migrate</parameter>
     <parameter key="security.access.always_authenticate_before_granting">false</parameter>
     <parameter key="security.authentication.hide_user_not_found">true</parameter>
+    <parameter key="hwi_oauth.resource_ownermap.configured.secured_area" type="collection">
+      <parameter key="facebook">/login/check-facebook</parameter>
+    </parameter>
     <parameter key="security.role_hierarchy.roles" type="collection"/>
     <parameter key="twig.class">Twig_Environment</parameter>
     <parameter key="twig.loader.filesystem.class">Symfony\Bundle\TwigBundle\Loader\FilesystemLoader</parameter>
@@ -569,6 +574,71 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
+    <parameter key="hwi_oauth.authentication.listener.oauth.class">HWI\Bundle\OAuthBundle\Security\Http\Firewall\OAuthListener</parameter>
+    <parameter key="hwi_oauth.authentication.provider.oauth.class">HWI\Bundle\OAuthBundle\Security\Core\Authentication\Provider\OAuthProvider</parameter>
+    <parameter key="hwi_oauth.authentication.entry_point.oauth.class">HWI\Bundle\OAuthBundle\Security\Http\EntryPoint\OAuthEntryPoint</parameter>
+    <parameter key="hwi_oauth.user.provider.class">HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider</parameter>
+    <parameter key="hwi_oauth.user.provider.entity.class">HWI\Bundle\OAuthBundle\Security\Core\User\EntityUserProvider</parameter>
+    <parameter key="hwi_oauth.user.provider.fosub_bridge.class">HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider</parameter>
+    <parameter key="hwi_oauth.registration.form.handler.fosub_bridge.class">HWI\Bundle\OAuthBundle\Form\FOSUBRegistrationFormHandler</parameter>
+    <parameter key="hwi_oauth.resource_owner.oauth1.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\GenericOAuth1ResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.oauth2.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\GenericOAuth2ResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.amazon.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\AmazonResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.auth0.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\Auth0ResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.bitbucket.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\BitbucketResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.bitly.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\BitlyResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.box.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\BoxResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.dailymotion.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\DailymotionResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.deviantart.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\DeviantartResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.disqus.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\DisqusResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.dropbox.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\DropboxResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.eve_online.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\EveOnlineResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.eventbrite.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\EventbriteResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.facebook.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FacebookResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.flickr.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FlickrResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.foursquare.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FoursquareResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.github.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\GitHubResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.google.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\GoogleResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.hubic.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\HubicResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.instagram.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\InstagramResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.jira.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\JiraResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.linkedin.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\LinkedinResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.mailru.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\MailRuResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.paypal.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\PaypalResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.qq.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\QQResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.reddit.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\RedditResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.salesforce.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\SalesforceResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.sensio_connect.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\SensioConnectResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.sina_weibo.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\SinaWeiboResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.soundcloud.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\SoundcloudResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.stack_exchange.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\StackExchangeResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.stereomood.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\StereomoodResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.toshl.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\ToshlResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.trello.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\TrelloResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.twitch.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\TwitchResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.twitter.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\TwitterResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.vkontakte.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\VkontakteResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.windows_live.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\WindowsLiveResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.wordpress.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\WordpressResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.xing.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\XingResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.yahoo.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\YahooResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.yandex.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\YandexResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.odnoklassniki.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\OdnoklassnikiResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_owner.37signals.class">HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\ThirtySevenSignalsResourceOwner</parameter>
+    <parameter key="hwi_oauth.resource_ownermap.class">HWI\Bundle\OAuthBundle\Security\Http\ResourceOwnerMap</parameter>
+    <parameter key="hwi_oauth.security.oauth_utils.class">HWI\Bundle\OAuthBundle\Security\OAuthUtils</parameter>
+    <parameter key="hwi_oauth.storage.session.class">HWI\Bundle\OAuthBundle\OAuth\RequestDataStorage\SessionStorage</parameter>
+    <parameter key="hwi_oauth.templating.helper.oauth.class">HWI\Bundle\OAuthBundle\Templating\Helper\OAuthHelper</parameter>
+    <parameter key="hwi_oauth.twig.extension.oauth.class">HWI\Bundle\OAuthBundle\Twig\Extension\OAuthExtension</parameter>
+    <parameter key="hwi_oauth.http_client.class">Buzz\Client\Curl</parameter>
+    <parameter key="hwi_oauth.firewall_name">secured_area</parameter>
+    <parameter key="hwi_oauth.target_path_parameter">null</parameter>
+    <parameter key="hwi_oauth.use_referer">false</parameter>
+    <parameter key="hwi_oauth.resource_owners" type="collection">
+      <parameter>facebook</parameter>
+    </parameter>
+    <parameter key="hwi_oauth.connect">false</parameter>
+    <parameter key="hwi_oauth.templating.engine">twig</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -1766,8 +1836,20 @@
     <service id="security.authentication.manager" class="Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager" public="false">
       <argument type="collection">
         <argument type="service">
+          <service class="HWI\Bundle\OAuthBundle\Security\Core\Authentication\Provider\OAuthProvider" public="false">
+            <argument type="service" id="hwi_oauth.user.provider.entity.secured_area"/>
+            <argument type="service" id="hwi_oauth.resource_ownermap.secured_area"/>
+            <argument type="service" id="hwi_oauth.user_checker"/>
+          </service>
+        </argument>
+        <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5519370ad3c6a</argument>
+            <argument>551994587c1fc</argument>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
+            <argument>551994587c1fc</argument>
           </service>
         </argument>
       </argument>
@@ -1821,6 +1903,7 @@
         <service class="Symfony\Bundle\SecurityBundle\Security\FirewallMap" public="false">
           <argument type="service" id="service_container"/>
           <argument type="collection">
+            <argument key="security.firewall.map.context.secured_area">null</argument>
             <argument key="security.firewall.map.context.dev" type="service">
               <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
                 <argument>^/(_(profiler|wdt|error)|css|images|js)/</argument>
@@ -1832,10 +1915,67 @@
       </argument>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
+    <service id="security.http_utils" class="Symfony\Component\Security\Http\HttpUtils" public="false">
+      <argument type="service" id="router" on-invalid="null"/>
+      <argument type="service" id="router" on-invalid="null"/>
+    </service>
     <service id="security.validator.user_password" class="Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator">
       <tag name="validator.constraint_validator" alias="security.validator.user_password"/>
       <argument type="service" id="security.context"/>
       <argument type="service" id="security.encoder_factory"/>
+    </service>
+    <service id="security.channel_listener" class="Symfony\Component\Security\Http\Firewall\ChannelListener" public="false">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="service" id="security.access_map"/>
+      <argument type="service">
+        <service class="Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint" public="false">
+          <argument>80</argument>
+          <argument>443</argument>
+        </service>
+      </argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/_wdt</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/login</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>ROLE_USER</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+    </service>
+    <service id="security.access_listener" class="Symfony\Component\Security\Http\Firewall\AccessListener" public="false">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="service" id="security.context"/>
+      <argument type="service" id="security.access.decision_manager"/>
+      <argument type="service" id="security.access_map"/>
+      <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.rememberme.response_listener" class="Symfony\Component\Security\Http\RememberMe\ResponseListener">
       <tag name="kernel.event_subscriber"/>
@@ -1849,34 +1989,138 @@
       <tag name="templating.helper" alias="security"/>
       <argument type="service" id="security.context" on-invalid="ignore"/>
     </service>
+    <service id="security.user.provider.concrete.in_memory" class="Symfony\Component\Security\Core\User\InMemoryUserProvider" public="false"/>
+    <service id="hwi_oauth.resource_ownermap.secured_area" class="HWI\Bundle\OAuthBundle\Security\Http\ResourceOwnerMap">
+      <argument type="service" id="security.http_utils"/>
+      <argument type="collection">
+        <argument>facebook</argument>
+      </argument>
+      <argument>%hwi_oauth.resource_ownermap.configured.secured_area%</argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="security.firewall.map.context.secured_area" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
+      <argument type="collection">
+        <argument type="service" id="security.channel_listener"/>
+        <argument type="service">
+          <service class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
+            <argument type="service" id="security.context"/>
+            <argument type="collection">
+              <argument type="service" id="security.user.provider.concrete.in_memory"/>
+              <argument type="service" id="hwi_oauth.user.provider.entity.secured_area"/>
+            </argument>
+            <argument>secured_area</argument>
+            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+            <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="HWI\Bundle\OAuthBundle\Security\Http\Firewall\OAuthListener" public="false">
+            <tag name="security.remember_me_aware" id="secured_area" provider="security.user.provider.concrete.in_memory"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="security.authentication.manager"/>
+            <argument type="service">
+              <service class="Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy" public="false">
+                <argument>migrate</argument>
+              </service>
+            </argument>
+            <argument type="service" id="security.http_utils"/>
+            <argument>secured_area</argument>
+            <argument type="service">
+              <service class="Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler" public="false">
+                <argument type="service" id="security.http_utils"/>
+                <argument type="collection"/>
+                <call method="setOptions">
+                  <argument type="collection">
+                    <argument key="login_path">/login</argument>
+                    <argument key="always_use_default_target_path">false</argument>
+                    <argument key="default_target_path">/</argument>
+                    <argument key="target_path_parameter">_target_path</argument>
+                    <argument key="use_referer">false</argument>
+                  </argument>
+                </call>
+                <call method="setProviderKey">
+                  <argument>secured_area</argument>
+                </call>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler" public="false">
+                <argument type="service" id="http_kernel"/>
+                <argument type="service" id="security.http_utils"/>
+                <argument type="collection"/>
+                <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+                <call method="setOptions">
+                  <argument type="collection">
+                    <argument key="login_path">/login</argument>
+                    <argument key="failure_path">/login</argument>
+                    <argument key="failure_forward">false</argument>
+                    <argument key="failure_path_parameter">_failure_path</argument>
+                  </argument>
+                </call>
+              </service>
+            </argument>
+            <argument type="collection">
+              <argument key="use_forward">false</argument>
+              <argument key="check_path">/login_check</argument>
+              <argument key="require_previous_session">true</argument>
+            </argument>
+            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+            <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
+            <call method="setResourceOwnerMap">
+              <argument type="service" id="hwi_oauth.resource_ownermap.secured_area"/>
+            </call>
+            <call method="setCheckPaths">
+              <argument type="collection">
+                <argument>/login/check-facebook</argument>
+              </argument>
+            </call>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
+            <argument type="service" id="security.context"/>
+            <argument>551994587c1fc</argument>
+            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+            <argument type="service" id="security.authentication.manager"/>
+          </service>
+        </argument>
+        <argument type="service" id="security.access_listener"/>
+      </argument>
+      <argument type="service">
+        <service class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
+          <argument type="service" id="security.context"/>
+          <argument type="service" id="security.authentication.trust_resolver"/>
+          <argument type="service" id="security.http_utils"/>
+          <argument>secured_area</argument>
+          <argument type="service">
+            <service class="HWI\Bundle\OAuthBundle\Security\Http\EntryPoint\OAuthEntryPoint" public="false">
+              <argument type="service" id="http_kernel"/>
+              <argument type="service" id="security.http_utils"/>
+              <argument>/login</argument>
+              <argument>false</argument>
+            </service>
+          </argument>
+          <argument>null</argument>
+          <argument>null</argument>
+          <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+        </service>
+      </argument>
+    </service>
     <service id="security.firewall.map.context.dev" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
       <argument type="collection"/>
       <argument>null</argument>
     </service>
     <service id="security.firewall.map.context.default" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
       <argument type="collection">
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\ChannelListener" public="false">
-            <tag name="monolog.logger" channel="security"/>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\AccessMap" public="false"/>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint" public="false">
-                <argument>80</argument>
-                <argument>443</argument>
-              </service>
-            </argument>
-            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-          </service>
-        </argument>
+        <argument type="service" id="security.channel_listener"/>
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
             <argument type="service" id="security.context"/>
             <argument type="collection">
-              <argument type="service">
-                <service class="Symfony\Component\Security\Core\User\InMemoryUserProvider" public="false"/>
-              </argument>
+              <argument type="service" id="security.user.provider.concrete.in_memory"/>
+              <argument type="service" id="hwi_oauth.user.provider.entity.secured_area"/>
             </argument>
             <argument>default</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -1886,33 +2130,18 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5519370ad3c6a</argument>
+            <argument>551994587c1fc</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
         </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\AccessListener" public="false">
-            <tag name="monolog.logger" channel="security"/>
-            <argument type="service" id="security.context"/>
-            <argument type="service" id="security.access.decision_manager"/>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\AccessMap" public="false"/>
-            </argument>
-            <argument type="service" id="security.authentication.manager"/>
-          </service>
-        </argument>
+        <argument type="service" id="security.access_listener"/>
       </argument>
       <argument type="service">
         <service class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
           <argument type="service" id="security.context"/>
           <argument type="service" id="security.authentication.trust_resolver"/>
-          <argument type="service">
-            <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-              <argument type="service" id="router" on-invalid="null"/>
-              <argument type="service" id="router" on-invalid="null"/>
-            </service>
-          </argument>
+          <argument type="service" id="security.http_utils"/>
           <argument>default</argument>
           <argument>null</argument>
           <argument>null</argument>
@@ -2076,6 +2305,14 @@
         <argument type="service">
           <service class="Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension" public="false">
             <tag name="twig.extension"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="HWI\Bundle\OAuthBundle\Twig\Extension\OAuthExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="hwi_oauth.templating.helper.oauth"/>
           </service>
         </argument>
       </call>
@@ -2425,6 +2662,51 @@
       <argument type="service" id="security.token_storage" on-invalid="null"/>
       <argument type="service" id="security.authorization_checker" on-invalid="null"/>
     </service>
+    <service id="hwi_oauth.security.oauth_utils" class="HWI\Bundle\OAuthBundle\Security\OAuthUtils">
+      <argument type="service" id="security.http_utils"/>
+      <argument type="service" id="security.context"/>
+      <argument>false</argument>
+      <call method="setResourceOwnerMap">
+        <argument type="service" id="hwi_oauth.resource_ownermap.secured_area"/>
+      </call>
+    </service>
+    <service id="hwi_oauth.templating.helper.oauth" class="HWI\Bundle\OAuthBundle\Templating\Helper\OAuthHelper">
+      <tag name="templating.helper" alias="oauth"/>
+      <argument type="service" id="hwi_oauth.security.oauth_utils"/>
+      <call method="setRequest">
+        <argument type="service" id="request" on-invalid="null" strict="false"/>
+      </call>
+    </service>
+    <service id="hwi_oauth.http_client" class="Buzz\Client\Curl">
+      <call method="setVerifyPeer">
+        <argument>true</argument>
+      </call>
+      <call method="setTimeout">
+        <argument>5</argument>
+      </call>
+      <call method="setMaxRedirects">
+        <argument>5</argument>
+      </call>
+      <call method="setIgnoreErrors">
+        <argument>true</argument>
+      </call>
+    </service>
+    <service id="hwi_oauth.resource_owner.facebook" class="HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FacebookResourceOwner">
+      <argument type="service" id="hwi_oauth.http_client"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument type="collection">
+        <argument key="client_id">709740949147725</argument>
+        <argument key="client_secret">1b4f8dbff1fc5228358869429642397a</argument>
+        <argument key="paths" type="collection"/>
+        <argument key="options" type="collection"/>
+      </argument>
+      <argument>facebook</argument>
+      <argument type="service">
+        <service class="HWI\Bundle\OAuthBundle\OAuth\RequestDataStorage\SessionStorage" public="false">
+          <argument type="service" id="session"/>
+        </service>
+      </argument>
+    </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
@@ -2707,6 +2989,7 @@
           <argument key="logout_url">templating.helper.logout_url</argument>
           <argument key="security">templating.helper.security</argument>
           <argument key="assetic">assetic.helper.dynamic</argument>
+          <argument key="oauth">hwi_oauth.templating.helper.oauth</argument>
         </argument>
       </call>
     </service>
@@ -2750,6 +3033,7 @@
     <service id="security.password_encoder" class="Symfony\Component\Security\Core\Encoder\UserPasswordEncoder">
       <argument type="service" id="security.encoder_factory"/>
     </service>
+    <service id="hwi_oauth.user.provider.entity.secured_area" class="HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider"/>
     <service id="twig.loader" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
       <tag name="twig.loader"/>
       <argument type="service" id="templating.locator"/>
@@ -2773,6 +3057,14 @@
       <call method="addPath">
         <argument>/var/www/nfqakademija/vendor/doctrine/doctrine-bundle/Resources/views</argument>
         <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/nfqakademija/vendor/hwi/oauth-bundle/HWI/Bundle/OAuthBundle/Resources/views</argument>
+        <argument>HWIOAuth</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/nfqakademija/src/NfqBundle/Resources/views</argument>
+        <argument>Nfq</argument>
       </call>
       <call method="addPath">
         <argument>/var/www/nfqakademija/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
@@ -2864,6 +3156,7 @@
         <argument>null</argument>
       </call>
     </service>
+    <service id="hwi_oauth.user_checker" class="Symfony\Component\Security\Core\User\UserChecker"/>
     <service id="session.storage" alias="session.storage.native"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher"/>
     <service id="debug.templating.engine.twig" alias="templating"/>
