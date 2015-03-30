@@ -1,8 +1,2 @@
-Some text will be here
+Test project with FB login page
 
-
-test 1
-
-test 2
-
-test 3
